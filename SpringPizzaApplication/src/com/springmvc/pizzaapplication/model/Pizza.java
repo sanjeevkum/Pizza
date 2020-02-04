@@ -1,13 +1,27 @@
 package com.springmvc.pizzaapplication.model;
 
+import org.springframework.stereotype.Component;
+
+//database table will be based on below attributes.
+@Component("newPizza")
 public class Pizza {
+	//Pizza Id
 	private Integer id;
+	//Pizza Name
 	private String name;
+	//Pizza Receipe
 	private String receipe;
+	//Pizza Size
 	private String size;
+	//Pizza Cost
 	private String cost;
+	//Pizza Type
 	private String type;
 
+	public Pizza() {
+		
+	}
+	
 	public Pizza(Integer id, String name, String receipe, String size, String cost, String type) {
 		super();
 		this.id = id;

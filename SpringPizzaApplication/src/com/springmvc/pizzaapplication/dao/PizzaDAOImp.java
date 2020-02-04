@@ -15,24 +15,28 @@ import com.springmvc.pizzaapplication.model.Pizza;
 
 public class PizzaDAOImp implements PizzaDAO {
 
+	//Specify the use of JDBC
 	private JdbcTemplate jdbcTemplate;	
 	
 	public PizzaDAOImp(DataSource datasource) {
 		this.jdbcTemplate = new JdbcTemplate(datasource);
 	}
 	
+	//Saving Data into Database
 	@Override
 	public int save(Pizza pizza) {
 		String sql = "INSERT INTO Pizza_Details (name, receipe, size, cost, type) VALUES(?,?,?,?,?)";
 		return jdbcTemplate.update(sql,pizza.getName(),pizza.getReceipe(),pizza.getSize(),pizza.getCost(),pizza.getType());
 	}
 
+	//Updating Existing Pizza Details
 	@Override
 	public int update(Pizza pizza) {
-		String sql = "UPDATE Pizza_Details SET name=?, receipe=?, size=?, cost=?, type=? WHERE pizza_id=?";
-		return jdbcTemplate.update(sql,pizza.getName(),pizza.getReceipe(),pizza.getSize(),pizza.getCost(),pizza.getType());
+		String sql = "UPDATE Pizza_Details SET name=?, receipe=?, size=?, cost=?, type=? WHERE id=?";
+		return jdbcTemplate.update(sql,pizza.getName(),pizza.getReceipe(),pizza.getSize(),pizza.getCost(),pizza.getType(),pizza.getId());
 	}
 
+	//Fetch particular  pizza details from databases
 	@Override
 	public Pizza get(Integer id) {
 		String sql = "SELECT * FROM Pizza_Details WHERE id="+id;
@@ -57,12 +61,16 @@ public class PizzaDAOImp implements PizzaDAO {
 		return jdbcTemplate.query(sql,extract);
 	}
 
+	
+	//Deleting from Databases it accept ID
 	@Override
 	public int delete(Integer id) {
 		String sql = "DELETE FROM Pizza_Details WHERE id="+id;
 		return jdbcTemplate.update(sql);
 	}
 
+	
+//	Fetch all data from databases
 	@Override
 	public List<Pizza> list() {
 		String sql = "SELECT * FROM Pizza_Details";
