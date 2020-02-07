@@ -10,7 +10,7 @@
 <body>
 	<div align="center">
 		<h1>New/Update Pizza</h1>
-		<form:form action="save" method="post" modelAttribute="Pizza">
+		<form:form action="save" method="post" modelAttribute="pizza">
 		<table cellpadding="5">
 			<form:hidden path="id"/>
 			<tr>
